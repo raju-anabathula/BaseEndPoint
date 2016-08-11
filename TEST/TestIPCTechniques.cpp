@@ -158,7 +158,7 @@ TEST(IPCFactory, NamedPipe)
 	EndPoint *fifoEndPoint = factory->createEndPointInstance(EndPointFactory::IPC_FIFO);
 	fifoEndPoint->initialize("FIFO_NAME");
 
-	string body = "";
+	string body = "ABC";
 	int bodyLength = body.length() + 1;
 
 	boost::shared_array<boost::uint8_t> messageBody(new boost::uint8_t[bodyLength]);

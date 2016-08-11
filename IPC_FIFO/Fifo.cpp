@@ -65,7 +65,7 @@ EmpFullMessage* Fifo::readData()
 	if(m_RWFD == -1)
 		Log::error(__FILE__, __LINE__, "Fifo is not opened in read/write mode.");
 
-	bytesRead = read(m_RWFD, buffer, 1024);
+//	bytesRead = read(m_RWFD, buffer, 1024);
 
 	// read data until length bytes
 	struct emp_message_part_before_length *before_len_struct = (emp_message_part_before_length*) malloc(sizeof(emp_message_part_before_length));
