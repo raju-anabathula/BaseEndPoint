@@ -48,7 +48,7 @@ all: BaseEndPoint
 BaseEndPoint: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L/software/gtest/x86_64/1.7.0/lib -L"/home/araju/workspace/BaseEndPoint/DYN_CONFIG/lib" -L/usr/lib/oracle/11.2/client64/lib -o "BaseEndPoint" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"/home/araju/workspace/BaseEndPoint/DYN_CONFIG/lib" -L/software/gtest/x86_64/1.7.0/lib -L/usr/lib/oracle/11.2/client64/lib -o "BaseEndPoint" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

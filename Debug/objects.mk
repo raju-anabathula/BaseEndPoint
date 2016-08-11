@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lgtest -lrt -lpthread -lgmock -lDynConfig -lDynamicConfigDB -lclntsh -lcommonlibdb -lencryptdecrypt -lboost_system
+LIBS := -lclntsh -lDynConfig -lDynamicConfigDB -lgtest -lboost_system -lcommonlibdb -lencryptdecrypt
 

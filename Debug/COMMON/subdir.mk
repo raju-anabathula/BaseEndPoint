@@ -23,7 +23,7 @@ CPP_DEPS += \
 COMMON/%.o: ../COMMON/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I"/home/araju/workspace/BaseEndPoint" -I"/home/araju/workspace/BaseEndPoint/DYN_CONFIG/include" -I/software/gtest/x86_64/1.7.0/include -I/usr/include/oracle/11.2/client64 -I/software/yst/linux/x86_64/boost/1.61.0/include -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I"/home/araju/workspace/BaseEndPoint" -I/software/gtest/x86_64/1.7.0/include -I/usr/include/oracle/11.2/client64 -I"/home/araju/workspace/BaseEndPoint/DYN_CONFIG/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
