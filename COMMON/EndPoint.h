@@ -22,10 +22,9 @@ struct emp_message_part_before_length
 
 struct emp_message_part_after_length
 {
-//	boost::uint32_t dataLength;
 	boost::uint32_t messageNumber;
 	boost::uint32_t messageTime;
-	boost::uint8_t varHeaderSize;
+//	boost::uint8_t varHeaderSize;
 };
 
 class EndPoint
