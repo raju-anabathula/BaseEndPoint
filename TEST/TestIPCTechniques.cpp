@@ -56,23 +56,8 @@ int main(int argc, char **argv)
 	return RUN_ALL_TESTS();
 }
 
-
-/*void fillMessageStruct(struct message_struct *msg_t, int actualMessageId, int messageId, string strData, int sequenceNumber)
-{
-	msg_t->ActualMessageId = actualMessageId;
-	msg_t->MessageId = messageId;
-	msg_t->seq_nbr = sequenceNumber;
-
-	strcpy(msg_t->data, strData.c_str());
-}*/
-
 bool compareMessages(EmpFullMessage *srcMessage, EmpFullMessage *destMessage)
 {
-	/*cout << "ActualMessageId:" << srcMessage->ActualMessageId << "::" << destMessage->ActualMessageId << endl;
-	cout << "MessageId:" << srcMessage->MessageId << "::" << destMessage->MessageId << endl;
-	cout << "seq_nbr:" << srcMessage->seq_nbr << "::" << destMessage->seq_nbr << endl;
-	cout << "data:" << srcMessage->data << "::" << destMessage->data << endl;*/
-
 	if(srcMessage->GetProtocolVersion() 	== destMessage->GetProtocolVersion() 	&&
 	   srcMessage->GetMessageNumber() 		== destMessage->GetMessageNumber() 		&&
 	   srcMessage->GetMessageVersion() 		== destMessage->GetMessageVersion() 	&&
@@ -191,11 +176,40 @@ TEST(IPCFactory, NamedPipe)
 	EndPoint *fifo2 = EndPointFactory::getEndPointFactory()->createEndPointInstance(EndPointFactory::IPC_FIFO);
 	fifo2->initialize("FIFO2");
 
-	struct message_struct *messageFromClient, *messageFromServer;
-	struct message_struct msgToServer, msgToClient;
+	EmpFullMessage *messageFromClient, *messageFromServer;
+	EmpFullMessage msgToServer, msgToClient;
 
-	fillMessageStruct(&msgToServer, 1, 1, "Hello server", 1);
-	fillMessageStruct(&msgToClient, 1, 1, "Hello client", 1);
+//	fillMessageStruct(&msgToServer, 1, 1, "Hello server", 1);
+
+	string strMsgToServer = "Hello Server";
+	string strMsgToClient = "Hello Client";
+	int nMsgLength = strMsgToServer.length() + 1;
+
+	boost::shared_array<boost::uint8_t> serverMsgBody(new boost::uint8_t[nMsgLength]);
+	memcpy(serverMsgBody.get(), strMsgToServer.c_str(), nMsgLength);
+
+	msgToServer.SetProtocolVersion(m_protocolVersion);
+	msgToServer.SetMessageType(m_messageType);
+	msgToServer.SetMessageVersion(m_messageVersion);
+	msgToServer.SetFlags(m_flags);
+	msgToServer.SetMessageNumber(m_messageNumber);
+	msgToServer.SetMessageTime(m_messageTime);
+	msgToServer.SetBody(serverMsgBody, nMsgLength);
+
+//	fillMessageStruct(&msgToClient, 1, 1, "Hello client", 1);
+
+	nMsgLength = strMsgToClient.length() + 1;
+
+	boost::shared_array<boost::uint8_t> clientMsgBody(new boost::uint8_t[nMsgLength]);
+	memcpy(clientMsgBody.get(), strMsgToClient.c_str(), nMsgLength);
+
+	msgToClient.SetProtocolVersion(m_protocolVersion);
+	msgToClient.SetMessageType(m_messageType);
+	msgToClient.SetMessageVersion(m_messageVersion);
+	msgToClient.SetFlags(m_flags);
+	msgToClient.SetMessageNumber(m_messageNumber);
+	msgToClient.SetMessageTime(m_messageTime);
+	msgToClient.SetBody(clientMsgBody, nMsgLength);
 
 	childPID = fork();
 
@@ -211,8 +225,8 @@ TEST(IPCFactory, NamedPipe)
 			messageFromServer = fifo2->readData();
 			if(messageFromServer != NULL)
 			{
-				cout << "messageFromServer:" << messageFromServer->data << endl;
-				EXPECT_TRUE(strcmp(messageFromServer->data, "Hello client") == 0);
+				cout << "messageFromServer:" << messageFromServer->GetBody().get() << endl;
+				EXPECT_TRUE(compareMessages(messageFromServer, &msgToClient));
 			}
 
 			dClientMsgIndex ++;
@@ -231,8 +245,8 @@ TEST(IPCFactory, NamedPipe)
 
 			if(messageFromClient != NULL)
 			{
-				cout << "messageFromClient:" << messageFromClient->data << endl;
-				EXPECT_TRUE(strcmp(messageFromClient->data, "Hello server") == 0);
+				cout << "messageFromClient:" << messageFromClient->GetBody().get() << endl;
+				EXPECT_TRUE(compareMessages(messageFromClient, &msgToServer));
 			}
 			fifo2->writeData(&msgToClient);
 
@@ -245,7 +259,6 @@ TEST(IPCFactory, NamedPipe)
 	fifo1->destroy();
 	fifo2->destroy();
 }*/
-
 
 
 /********************* Test program for Shared memory **************************************/
