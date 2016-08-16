@@ -8,8 +8,8 @@
 #ifndef INCLUDE_FIFO_H_
 #define INCLUDE_FIFO_H_
 
+#include <ITCM/Configuration/ConfigConstants.h>
 #include "COMMON/EndPoint.h"
-#include "../itcm/Configuration/ConfigConstants.h"
 
 namespace ipc
 {
@@ -23,7 +23,7 @@ public:
 	/****************************************************************************************************
 	 * Function name	: initialize
 	 * Description		: This function initializes the file name needed for the read/write operations.
-	 * Parameters		: void
+	 * Parameters		: string - the name of the FIFO
 	 * Return value		: void
 	 ******************************************************************************************************/
 	void initialize(string strName);
@@ -32,14 +32,14 @@ public:
 	 * Function name	: readData
 	 * Description		: This function is used read the written data from the FIFO
 	 * Parameters		: void
-	 * Return value		: string - data read from the FIFO
+	 * Return value		: EmpFullMessage - data read from the FIFO
 	 ******************************************************************************************************/
 	EmpFullMessage* readData();
 
 	/****************************************************************************************************
 	 * Function name	: writeData
 	 * Description		: This function is used write the data to FIFO
-	 * Parameters		: string - data to write to the FIFO
+	 * Parameters		: EmpFullMessage - data to write to the FIFO
 	 * Return value		: void
 	 ******************************************************************************************************/
 	void writeData(EmpFullMessage *message);

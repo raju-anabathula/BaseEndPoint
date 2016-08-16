@@ -98,9 +98,9 @@ void *receiver(void * i)
 }
 */
 
-TEST(IPCFactory,MessageQueue)
+/*TEST(IPCFactory,MessageQueue)
 {
-	/*EndPoint *msgQueueTechnique = factory->createEndPointInstance(EndPointFactory::IPC_MQ);
+	EndPoint *msgQueueTechnique = factory->createEndPointInstance(EndPointFactory::IPC_MQ);
 	msgQueueTechnique->setName("/myqueue1123");
 	msgQueueTechnique->initialize();
 
@@ -110,8 +110,8 @@ TEST(IPCFactory,MessageQueue)
 	pthread_create(&p[1],NULL,receiver,NULL);
 	pthread_join(p[1],NULL);
 
-	msgQueueTechnique->destroy();*/
-}
+	msgQueueTechnique->destroy();
+}*/
 
 
 
@@ -179,8 +179,6 @@ TEST(IPCFactory, NamedPipe)
 	EmpFullMessage *messageFromClient, *messageFromServer;
 	EmpFullMessage msgToServer, msgToClient;
 
-//	fillMessageStruct(&msgToServer, 1, 1, "Hello server", 1);
-
 	string strMsgToServer = "Hello Server";
 	string strMsgToClient = "Hello Client";
 	int nMsgLength = strMsgToServer.length() + 1;
@@ -195,8 +193,6 @@ TEST(IPCFactory, NamedPipe)
 	msgToServer.SetMessageNumber(m_messageNumber);
 	msgToServer.SetMessageTime(m_messageTime);
 	msgToServer.SetBody(serverMsgBody, nMsgLength);
-
-//	fillMessageStruct(&msgToClient, 1, 1, "Hello client", 1);
 
 	nMsgLength = strMsgToClient.length() + 1;
 
@@ -230,7 +226,7 @@ TEST(IPCFactory, NamedPipe)
 			}
 
 			dClientMsgIndex ++;
-			if(dClientMsgIndex == 5)
+			if(dClientMsgIndex == 1)
 				break;
 		}
 	}
@@ -251,7 +247,7 @@ TEST(IPCFactory, NamedPipe)
 			fifo2->writeData(&msgToClient);
 
 			dServerMsgIndex ++;
-			if(dServerMsgIndex == 5)
+			if(dServerMsgIndex == 1)
 				break;
 		}
 	}

@@ -24,8 +24,9 @@ struct emp_message_part_after_length
 {
 	boost::uint32_t messageNumber;
 	boost::uint32_t messageTime;
-//	boost::uint8_t varHeaderSize;
 };
+
+#define MAX_EMP_MESSAGE_LENGTH 1 * 1024 * 1024 //1 MB
 
 class EndPoint
 {

@@ -4,19 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../TEST/EmpFullMessageTests.cpp \
 ../TEST/GtestMain.cpp \
 ../TEST/TestClassFramework.cpp \
 ../TEST/TestIPCTechniques.cpp 
 
 OBJS += \
-./TEST/EmpFullMessageTests.o \
 ./TEST/GtestMain.o \
 ./TEST/TestClassFramework.o \
 ./TEST/TestIPCTechniques.o 
 
 CPP_DEPS += \
-./TEST/EmpFullMessageTests.d \
 ./TEST/GtestMain.d \
 ./TEST/TestClassFramework.d \
 ./TEST/TestIPCTechniques.d 
