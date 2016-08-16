@@ -6,11 +6,11 @@
 #include <boost/cstdint.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/shared_array.hpp>
-#include <itcm/common/ByteStream.h>
-#include <itcm/common/Preconditions.h>
-
-#include "../itcm/Configuration/ConfigConstants.h"
-#include "../itcm/Errors/InvalidMessage.h"
+#include "ITCM/Configuration/ConfigConstants.h"
+#include <ITCM/common/ByteStream.h>
+#include <ITCM/common/Preconditions.h>
+#include <ITCM/Configuration/ConfigConstants.h>
+#include <ITCM/Errors/InvalidMessage.h>
 
 using namespace std;
 

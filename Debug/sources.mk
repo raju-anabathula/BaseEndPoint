@@ -25,7 +25,7 @@ C_DEPS :=
 SUBDIRS := \
 COMMON \
 IPC_FIFO \
+ITCM/src \
 LOG \
 TEST \
-itcm/src \
 

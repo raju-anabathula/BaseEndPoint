@@ -8,9 +8,9 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include itcm/src/subdir.mk
 -include TEST/subdir.mk
 -include LOG/subdir.mk
+-include ITCM/src/subdir.mk
 -include IPC_FIFO/subdir.mk
 -include COMMON/subdir.mk
 -include subdir.mk
